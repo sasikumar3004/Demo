@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'Newrepo', credentialsId: 'PROD', url: 'https://github.com/sasikumar3004/Newrepo.git'
+                git branch: 'Demo', credentialsId: 'PROD', url: 'https://github.com/sasikumar3004/Demo.git'
                 }
        }
         stage('Terraform Init') {
