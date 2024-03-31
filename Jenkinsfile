@@ -1,21 +1,21 @@
 pipeline {
     agent any
-    
+
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'Demo', credentialsId: 'PROD', url: 'https://github.com/sasikumar3004/Demo.git'
+                git branch: 'main', changelog: false, credentialsId: 'PROD', poll: false, url: 'https://github.com/sasikumar3004/Demo.git'
                 }
        }
         stage('Terraform Init') {
             steps {
-                sh 'terraform init'
+                bat 'terraform init'
             }
 }
 
             stage('Terraform Apply') {
             steps {
-                sh 'terraform apply -- auto-approve'
+                bat 'terraform apply' -- auto-approve'
             }
 }
 }
