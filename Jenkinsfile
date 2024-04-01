@@ -27,7 +27,7 @@ parameters {
                 expression { params.action == 'plan' || params.action == 'apply' }
             }
                 steps {
-                bat 'terraform plan -no-color -input=false -out=tfplan
+                bat 'terraform plan -no-color -input=false -out=tfplan'
             }
         }         
             stage('Apply') {
