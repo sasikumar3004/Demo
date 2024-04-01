@@ -51,5 +51,13 @@ parameters {
                 bat 'terraform apply -no-color -input=false tfplan'
             }
         }
+        stage('show') {
+            when {
+                expression { params.action == 'show' }
+            }
+            steps {
+                bat 'terraform show -no-color'
+            }
+        }
 }
 }
