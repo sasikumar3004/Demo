@@ -43,10 +43,13 @@ parameters {
                 }
             }
         }         
-            stage('Apply') {
-            steps {
-                bat 'terraform apply'
+          stage('apply') {
+            when {
+                expression { params.action == 'apply' }
             }
-}
+            steps {
+                bat 'terraform apply -no-color -input=false tfplan'
+            }
+        }
 }
 }
