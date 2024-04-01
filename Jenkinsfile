@@ -59,5 +59,27 @@ parameters {
                 bat 'terraform show -no-color'
             }
         }
+        stage('preview-destroy') {
+            when {
+                expression { params.action == 'preview-destroy' || params.action == 'destroy'}
+            }
+            steps {
+                bat 'terraform plan -no-color -destroy -out=tfplan'
+                bat 'terraform show -no-color tfplan > tfplan.txt'
+            }
+        }
+        stage('destroy') {
+            when {
+                expression { params.action == 'destroy' }
+            }
+            steps {
+                script {
+                    def plan = readFile 'tfplan.txt'
+                    input message: "Delete the stack?",
+                    parameters: [text(name: 'Plan', description: 'Please review the plan', defaultValue: plan)]
+                }
+                bat 'terraform destroy -no-color -force'
+            }
+        }
 }
 }
