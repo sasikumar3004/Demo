@@ -17,7 +17,7 @@ parameters {
                 git branch: 'main', changelog: false, credentialsId: 'PROD', poll: false, url: 'https://github.com/sasikumar3004/Demo.git'
                 }
        }
-        stage('Terraform Init') {
+        stage('Init') {
             steps {
                 bat 'terraform init'
             }
@@ -26,15 +26,15 @@ parameters {
             when {
                 expression { params.action == 'plan' || params.action == 'apply' }
             }
+        } 
             steps {
-                sh 'terraform plan -no-color -input=false -out=tfplan --var-file=C:\\terraform\\PlanOutput.vars'
+                bat 'terraform plan -no-color -input=false -out=tfplan --var-file=C:\\terraform\\PlanOutput.vars'
             }
 
-            stage('Terraform Apply') {
+            stage('Apply') {
             steps {
                 bat 'terraform apply'
             }
-}
 }
 }
 }
