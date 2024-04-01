@@ -78,7 +78,7 @@ parameters {
                     input message: "Delete the stack?",
                     parameters: [text(name: 'Plan', description: 'Please review the plan', defaultValue: plan)]
                 }
-                bat 'terraform destroy -no-color'
+                bat 'terraform destroy -no-color --auto-approve'
             }
         }
 }
