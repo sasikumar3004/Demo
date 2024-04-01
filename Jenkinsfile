@@ -15,12 +15,7 @@ pipeline {
                 bat 'aws --version'
             }
 }
- stage('list dir') {
-            steps {
-                bat 'dir'
-            }
-}
-        stage('Terraform Init') {
+    stage('Terraform Init') {
             steps {
                 bat 'terraform init'
             }
@@ -28,7 +23,7 @@ pipeline {
 
             stage('Terraform Apply') {
             steps {
-                bat 'terraform apply --auto-approve'
+                bat 'terraform apply'
             }
 }
 }
