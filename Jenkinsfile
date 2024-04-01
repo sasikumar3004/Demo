@@ -27,10 +27,9 @@ parameters {
                 expression { params.action == 'plan' || params.action == 'apply' }
             }
                 steps {
-                bat 'terraform plan -no-color -input=false -out=tfplan --var-file=C:\\terraform\\PlanOutput.vars'
+                bat 'terraform plan -no-color -input=false -out=tfplan
             }
         }         
-
             stage('Apply') {
             steps {
                 bat 'terraform apply'
