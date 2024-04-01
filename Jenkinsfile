@@ -26,10 +26,10 @@ parameters {
             when {
                 expression { params.action == 'plan' || params.action == 'apply' }
             }
-        } 
-            steps {
+                steps {
                 bat 'terraform plan -no-color -input=false -out=tfplan --var-file=C:\\terraform\\PlanOutput.vars'
             }
+        }         
 
             stage('Apply') {
             steps {
